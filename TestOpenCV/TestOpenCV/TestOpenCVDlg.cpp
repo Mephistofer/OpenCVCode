@@ -174,7 +174,7 @@ void CTestOpenCVDlg::OnBnClickedButtonPic()
 	//如果无法读取图形
 	if (!image.data)
 	{
-		std::cout << "无法打开图像文件" << std::endl;
+		std::cout << "无法打开图像文件" << std::endl; 
 		system("PAUSE");//暂停窗口
 		return;
 	}
