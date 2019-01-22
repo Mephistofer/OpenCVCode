@@ -33,4 +33,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButtonPic();
+	CEdit m_editPicPath;
+	CEdit m_editVedioPath;
+	afx_msg void OnBnClickedButtonPicPathChoose();
+	afx_msg void OnBnClickedButtonVedioPathChoose();
+private:
+	CString m_strFilePathName;
 };
