@@ -196,63 +196,62 @@ void CTestOpenCVDlg::OnBnClickedButtonPic()
 
 void CTestOpenCVDlg::OnBnClickedButtonPicPathChoose()
 {
-	TCHAR path[MAX_PATH] = { 0 };
-	GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
-	CString filePath = path;
+    TCHAR path[MAX_PATH] = { 0 };
+    GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
+    CString filePath = path;
 
-	if (!m_strFilePathName.IsEmpty())
-		filePath = m_strFilePathName;
-	// TODO: Add your control notification handler code here
-	CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
-		"All   Files(*.*)|*.*|图像文件(*.jpg)|*.jpg|位图文件(*.bmp)|*.bmp|| ", NULL);
-	dlg.m_ofn.lpstrInitialDir = (LPCTSTR)filePath;  //设置默认的打开文件路径
-	dlg.m_ofn.lpstrFile = new TCHAR[1024];
-	memset(dlg.m_ofn.lpstrFile, 0, 1024);  // 初始化定义的缓冲 
-	dlg.m_ofn.nMaxFile = 1024;           // 重定义 nMaxFile 
+    if (!m_strFilePathName.IsEmpty())
+        filePath = m_strFilePathName;
+    // TODO: Add your control notification handler code here
+    CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
+                     "All   Files(*.*)|*.*|图像文件(*.jpg)|*.jpg|位图文件(*.bmp)|*.bmp|| ", NULL);
+    dlg.m_ofn.lpstrInitialDir = (LPCTSTR)filePath;  //设置默认的打开文件路径
+    dlg.m_ofn.lpstrFile = new TCHAR[1024];
+    memset(dlg.m_ofn.lpstrFile, 0, 1024);  // 初始化定义的缓冲
+    dlg.m_ofn.nMaxFile = 1024;           // 重定义 nMaxFile
 
-	CString fileExt("");
-	CString fileName("");
+    CString fileExt("");
+    CString fileName("");
 
-	if (dlg.DoModal() == IDOK)
-	{
-		m_strFilePathName = dlg.GetPathName();
-		m_editPicPath.SetWindowText(m_strFilePathName);
-	}
-	else
-	{
+    if (dlg.DoModal() == IDOK)
+    {
+        m_strFilePathName = dlg.GetPathName();
+        m_editPicPath.SetWindowText(m_strFilePathName);
+    }
+    else
+    {
 
-	}
+    }
 }
-
 
 void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
 {
-	TCHAR path[MAX_PATH] = { 0 };
-	GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
-	CString filePath = path;
+    TCHAR path[MAX_PATH] = { 0 };
+    GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
+    CString filePath = path;
 
-	if (!m_strFilePathName.IsEmpty())
-		filePath = m_strFilePathName;
+    if (!m_strFilePathName.IsEmpty())
+        filePath = m_strFilePathName;
 
 
-	// TODO: Add your control notification handler code here
-	CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
-		"All   Files(*.*)|*.*|视频文件(*.avi)|| ", NULL);
-	dlg.m_ofn.lpstrInitialDir = (LPCTSTR)filePath;  //设置默认的打开文件路径
-	dlg.m_ofn.lpstrFile = new TCHAR[1024];
-	memset(dlg.m_ofn.lpstrFile, 0, 1024);  // 初始化定义的缓冲 
-	dlg.m_ofn.nMaxFile = 1024;           // 重定义 nMaxFile 
+    // TODO: Add your control notification handler code here
+    CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
+                     "All   Files(*.*)|*.*|视频文件(*.avi)|| ", NULL);
+    dlg.m_ofn.lpstrInitialDir = (LPCTSTR)filePath;  //设置默认的打开文件路径
+    dlg.m_ofn.lpstrFile = new TCHAR[1024];
+    memset(dlg.m_ofn.lpstrFile, 0, 1024);  // 初始化定义的缓冲
+    dlg.m_ofn.nMaxFile = 1024;           // 重定义 nMaxFile
 
-	CString fileExt("");
-	CString fileName("");
+    CString fileExt("");
+    CString fileName("");
 
-	if (dlg.DoModal() == IDOK)
-	{
-		m_strFilePathName = dlg.GetPathName();
-		m_editVedioPath.SetWindowText(m_strFilePathName);
-	}
-	else
-	{
+    if (dlg.DoModal() == IDOK)
+    {
+        m_strFilePathName = dlg.GetPathName();
+        m_editVedioPath.SetWindowText(m_strFilePathName);
+    }
+    else
+    {
 
-	}
+    }
 }
