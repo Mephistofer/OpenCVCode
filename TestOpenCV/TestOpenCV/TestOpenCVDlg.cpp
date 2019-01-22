@@ -161,14 +161,12 @@ HCURSOR CTestOpenCVDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-
 void CTestOpenCVDlg::OnBnClickedButtonPic()
 {
 	//窗口名称
 	std::string windowName = "HelloWorld";
 	//图像名称
-	std::string imgFile = "F:\\Picture\\头像\\1239102926483_2p03nh.jpg";
+	std::string imgFile = "F:\\Image1.jpg";
 	//读入图像
 	cv::Mat image = cv::imread(imgFile, cv::IMREAD_COLOR);
 	//如果无法读取图形
