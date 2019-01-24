@@ -77,6 +77,7 @@ BEGIN_MESSAGE_MAP(CTestOpenCVDlg, CDialogEx)
     ON_BN_CLICKED(IDC_BUTTON_PIC, &CTestOpenCVDlg::OnBnClickedButtonPic)
     ON_BN_CLICKED(IDC_BUTTON_PIC_PATH_CHOOSE, &CTestOpenCVDlg::OnBnClickedButtonPicPathChoose)
     ON_BN_CLICKED(IDC_BUTTON_VEDIO_PATH_CHOOSE, &CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose)
+    ON_BN_CLICKED(IDC_BUTTON_VEDIO, &CTestOpenCVDlg::OnBnClickedButtonVedio)
 END_MESSAGE_MAP()
 
 
@@ -112,8 +113,10 @@ BOOL CTestOpenCVDlg::OnInitDialog()
     SetIcon(m_hIcon, FALSE);		// 设置小图标
 
     // TODO: 在此添加额外的初始化代码
-    m_editPicPath.SetWindowText("F:\\Image1.jpg");
-    m_editVedioPath.SetWindowText("F:\\Vedio1.avi");
+    m_strPicPathName = "F:\\OpenCVTestData\\Image";
+    m_editPicPath.SetWindowText(m_strPicPathName + "\\Image1.jpg");
+    m_strVedioPathName = "F:\\OpenCVTestData\\Vedio";
+    m_editVedioPath.SetWindowText(m_strVedioPathName + "\\Vedio1.avi");
 
     return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -170,7 +173,7 @@ HCURSOR CTestOpenCVDlg::OnQueryDragIcon()
 void CTestOpenCVDlg::OnBnClickedButtonPic()
 {
     //窗口名称
-    std::string windowName = "HelloWorld";
+    std::string windowName = "Hello PIC";
     //图像名称
     CString strImgFile;
     m_editPicPath.GetWindowText(strImgFile);
@@ -191,8 +194,8 @@ void CTestOpenCVDlg::OnBnClickedButtonPic()
     cv::imshow(windowName, image);
     //等待，直到用户按任意键时退出
     cv::waitKey(0);
-}
 
+}
 
 void CTestOpenCVDlg::OnBnClickedButtonPicPathChoose()
 {
@@ -200,8 +203,8 @@ void CTestOpenCVDlg::OnBnClickedButtonPicPathChoose()
     GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
     CString filePath = path;
 
-    if (!m_strFilePathName.IsEmpty())
-        filePath = m_strFilePathName;
+    if (!m_strPicPathName.IsEmpty())
+        filePath = m_strPicPathName;
     // TODO: Add your control notification handler code here
     CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
                      "All   Files(*.*)|*.*|图像文件(*.jpg)|*.jpg|位图文件(*.bmp)|*.bmp|| ", NULL);
@@ -215,8 +218,9 @@ void CTestOpenCVDlg::OnBnClickedButtonPicPathChoose()
 
     if (dlg.DoModal() == IDOK)
     {
-        m_strFilePathName = dlg.GetPathName();
-        m_editPicPath.SetWindowText(m_strFilePathName);
+        CString strPathFileName = dlg.GetPathName();
+        m_editPicPath.SetWindowText(strPathFileName);
+        m_strPicPathName = strPathFileName.Left(strPathFileName.ReverseFind('\\'));
     }
     else
     {
@@ -230,13 +234,12 @@ void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
     GetCurrentDirectory(MAX_PATH, path); // 文件目录保存在path这个字符数组
     CString filePath = path;
 
-    if (!m_strFilePathName.IsEmpty())
-        filePath = m_strFilePathName;
-
+    if (!m_strVedioPathName.IsEmpty())
+        filePath = m_strVedioPathName;
 
     // TODO: Add your control notification handler code here
     CFileDialog  dlg(TRUE, NULL, " ", OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT,
-                     "All   Files(*.*)|*.*|视频文件(*.avi)|| ", NULL);
+                     "All   Files(*.*)|*.*|视频文件(*.avi)|*.avi|| ", NULL);
     dlg.m_ofn.lpstrInitialDir = (LPCTSTR)filePath;  //设置默认的打开文件路径
     dlg.m_ofn.lpstrFile = new TCHAR[1024];
     memset(dlg.m_ofn.lpstrFile, 0, 1024);  // 初始化定义的缓冲
@@ -247,11 +250,57 @@ void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
 
     if (dlg.DoModal() == IDOK)
     {
-        m_strFilePathName = dlg.GetPathName();
-        m_editVedioPath.SetWindowText(m_strFilePathName);
+        CString strPathFileName = dlg.GetPathName();
+        m_editVedioPath.SetWindowText(strPathFileName);
+        m_strVedioPathName = strPathFileName.Left(strPathFileName.ReverseFind('\\'));
     }
     else
     {
 
     }
+}
+
+void CTestOpenCVDlg::OnBnClickedButtonVedio()
+{
+    //窗口名称
+    std::string windowName = "Hello Vedio";
+    //图像名称
+    CString strImgFile;
+    m_editVedioPath.GetWindowText(strImgFile);
+
+   // cv::namedWindow(windowName, cv::WINDOW_AUTOSIZE);
+
+    cv::VideoCapture cap;
+    cap.open(strImgFile.GetBuffer(0));
+    strImgFile.ReleaseBuffer();
+    MyDebugPrintf("cap.Open Result=[%d][%s]", cap.isOpened(), strImgFile);
+
+    cv::Mat frame;
+
+    for (;;)
+    {
+        cap >> frame;
+        if (frame.empty())
+            break; // Ran out of film
+
+        cv::imshow("Example 2-3", frame);
+
+        if ((char)cv::waitKey(10) >= 0)
+            break;
+
+        //int c = cv::waitKey(33);
+        //for(int i=0; i<32; i++)
+        //{
+        //    MyDebugPrintf( "%d", ((c&(0x1<<(31-i)))?1:0));
+        //}
+
+        //MyDebugPrintf("Break key: %d", (int)c);
+        //if( (signed char)c >= 0 )
+        //{
+        //    break;
+        //}
+
+    }
+
+    int o = 90;
 }

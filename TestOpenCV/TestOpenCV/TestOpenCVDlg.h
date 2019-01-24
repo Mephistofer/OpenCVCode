@@ -38,5 +38,8 @@ public:
 	afx_msg void OnBnClickedButtonPicPathChoose();
 	afx_msg void OnBnClickedButtonVedioPathChoose();
 private:
-	CString m_strFilePathName;
+	CString m_strPicPathName;
+	CString m_strVedioPathName;
+public:
+	afx_msg void OnBnClickedButtonVedio();
 };

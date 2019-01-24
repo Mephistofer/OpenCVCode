@@ -35,6 +35,7 @@
 
 
 
+void CDECL MyDebugPrintf(TCHAR * szFormat, ...);
 
 
 

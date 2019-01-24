@@ -13,6 +13,8 @@
 #define IDC_EDIT_VEDIO_PATH             1002
 #define IDC_BUTTON_PIC_PATH_CHOOSE      1003
 #define IDC_BUTTON_VEDIO_PATH_CHOOSE    1004
+#define IDC_BUTTON_PIC2                 1005
+#define IDC_BUTTON_VEDIO                1005
 
 // Next default values for new objects
 // 
