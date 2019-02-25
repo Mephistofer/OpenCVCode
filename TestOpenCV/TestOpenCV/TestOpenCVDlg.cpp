@@ -118,7 +118,7 @@ BOOL CTestOpenCVDlg::OnInitDialog()
     m_strVedioPathName = "F:\\OpenCVTestData\\Vedio";
     m_editVedioPath.SetWindowText(m_strVedioPathName + "\\Vedio1.avi");
 
-    return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+    return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE 
 }
 
 void CTestOpenCVDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -302,5 +302,5 @@ void CTestOpenCVDlg::OnBnClickedButtonVedio()
 
     }
 
-    int o = 90;
+    int o = 900;
 }
