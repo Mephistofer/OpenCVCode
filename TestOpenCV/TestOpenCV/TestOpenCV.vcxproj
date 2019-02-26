@@ -78,6 +78,8 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryWPath>
     </LibraryWPath>
+    <IncludePath>D:\Program Files\opencv\build\include;D:\Program Files\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Program Files\opencv\build\x86\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -86,6 +88,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Program Files\opencv\build\include;D:\Program Files\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Program Files\opencv\build\x86\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
