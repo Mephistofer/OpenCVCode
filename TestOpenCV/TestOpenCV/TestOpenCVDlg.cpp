@@ -256,7 +256,7 @@ void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
     }
     else
     {
-
+		  
     } 
 }
 
