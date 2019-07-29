@@ -257,7 +257,7 @@ void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
     else
     {
 
-    }
+    } 
 }
 
 void CTestOpenCVDlg::OnBnClickedButtonVedio()
