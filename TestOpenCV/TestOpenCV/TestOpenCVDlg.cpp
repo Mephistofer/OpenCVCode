@@ -263,7 +263,7 @@ void CTestOpenCVDlg::OnBnClickedButtonVedioPathChoose()
 void CTestOpenCVDlg::OnBnClickedButtonVedio()
 {
     //窗口名称
-    std::string windowName = "Hello Vedio";
+    std::string windowName = "Hello Video";
     //图像名称
     CString strImgFile;
     m_editVedioPath.GetWindowText(strImgFile);
