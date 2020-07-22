@@ -271,7 +271,7 @@ void CTestOpenCVDlg::OnBnClickedButtonVedio()
    // cv::namedWindow(windowName, cv::WINDOW_AUTOSIZE);
 
     cv::VideoCapture cap;
-    cap.open(strImgFile.GetBuffer(0));
+    cap.open(0, cv::CAP_DSHOW);
     strImgFile.ReleaseBuffer();
     MyDebugPrintf("cap.Open Result=[%d][%s]", cap.isOpened(), strImgFile);
 
