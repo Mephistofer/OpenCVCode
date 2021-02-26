@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /Learning-OpenCV-3_examples-master
+/Debug
+/Release
